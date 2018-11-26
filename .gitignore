@@ -32,3 +32,21 @@ commons/\.classpath
 brevetes-ms/bin/
 
 commons/\.project
+
+brevetes-ms/\.settings/
+
+brevetes-ms/target/
+
+brevetes-ms/\.classpath
+
+brevetes-ms/\.project
+
+commons/\.settings/
+
+commons/target/
+
+commons/\.classpath
+
+commons/\.project
+
+RemoteSystemsTempFiles/
