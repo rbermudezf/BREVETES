@@ -16,49 +16,49 @@ public class Dependencia {
 	@SequenceGenerator(name="sq_dependencia",sequenceName="\"SQ_DEPENDENCIA\"", allocationSize=1) 
 	
 	@Column( name="CDEPENDENCIA_CODIGO")
-	private String DependenciaCodigo;
+	private String codigoDependencia;
 
 	@Column( name="VDEPENDENCIA_NOMBRE")
-	private String DependenciaNombre;
+	private String nombreDependencia;
 	
 	@Column( name="VDEPENDENCIA_ABREVIADO")
-	private Integer DependenciaAbreviado;
+	private Integer abreviadoDependencia;
 	
 	@Column( name="CDEPENDENCIA_PREFIJO")
-	private String DependenciaPrefijo;
+	private String prefijoDependencia;
+
+	public String getCodigoDependencia() {
+		return codigoDependencia;
+	}
+
+	public void setCodigoDependencia(String codigoDependencia) {
+		this.codigoDependencia = codigoDependencia;
+	}
+
+	public String getNombreDependencia() {
+		return nombreDependencia;
+	}
+
+	public void setNombreDependencia(String nombreDependencia) {
+		this.nombreDependencia = nombreDependencia;
+	}
+
+	public Integer getAbreviadoDependencia() {
+		return abreviadoDependencia;
+	}
+
+	public void setAbreviadoDependencia(Integer abreviadoDependencia) {
+		this.abreviadoDependencia = abreviadoDependencia;
+	}
+
+	public String getPrefijoDependencia() {
+		return prefijoDependencia;
+	}
+
+	public void setPrefijoDependencia(String prefijoDependencia) {
+		this.prefijoDependencia = prefijoDependencia;
+	}
 	
-	public String getDependenciaCodigo() {
-		return DependenciaCodigo;
-	}
-
-	public void setDependenciaCodigo(String dependenciaCodigo) {
-		DependenciaCodigo = dependenciaCodigo;
-	}
-
-	public String getDependenciaNombre() {
-		return DependenciaNombre;
-	}
-
-	public void setDependenciaNombre(String dependenciaNombre) {
-		DependenciaNombre = dependenciaNombre;
-	}
-
-	public Integer getDependenciaAbreviado() {
-		return DependenciaAbreviado;
-	}
-
-	public void setDependenciaAbreviado(Integer dependenciaAbreviado) {
-		DependenciaAbreviado = dependenciaAbreviado;
-	}
-
-	public String getDependenciaPrefijo() {
-		return DependenciaPrefijo;
-	}
-
-	public void setDependenciaPrefijo(String dependenciaPrefijo) {
-		DependenciaPrefijo = dependenciaPrefijo;
-	}
-
 	
 
 }
