@@ -14,42 +14,51 @@ public class Dependencia {
 	@Id //TOMA A LA LLAVE PRIMARIA
 	@GeneratedValue(generator="sq_dependencia")//GENERAR TU CODIGO YA SEA POR UNA SECUENCIA O EL JAVA
 	@SequenceGenerator(name="sq_dependencia",sequenceName="\"SQ_DEPENDENCIA\"", allocationSize=1) 
+	
 	@Column( name="CDEPENDENCIA_CODIGO")
-	private String dependenciaCodigo;
+	private String DependenciaCodigo;
 
-	private String VDEPENDENCIA_NOMBRE;
-	private Integer VDEPENDENCIA_ABREVIADO;
-	private String CDEPENDENCIA_PREFIJO;
+	@Column( name="VDEPENDENCIA_NOMBRE")
+	private String DependenciaNombre;
 	
-	public String getDependenciaCodigo(){
-		return dependenciaCodigo;
+	@Column( name="VDEPENDENCIA_ABREVIADO")
+	private Integer DependenciaAbreviado;
+	
+	@Column( name="CDEPENDENCIA_PREFIJO")
+	private String DependenciaPrefijo;
+	
+	public String getDependenciaCodigo() {
+		return DependenciaCodigo;
 	}
 
-	public void setDependenciaCodigo(String dependenciaCodigo){
-		this.dependenciaCodigo = dependenciaCodigo;
+	public void setDependenciaCodigo(String dependenciaCodigo) {
+		DependenciaCodigo = dependenciaCodigo;
 	}
 
-	public String getVDEPENDENCIA_NOMBRE() {
-		return VDEPENDENCIA_NOMBRE;
+	public String getDependenciaNombre() {
+		return DependenciaNombre;
 	}
-	public void setVDEPENDENCIA_NOMBRE(String vDEPENDENCIA_NOMBRE) {
-		VDEPENDENCIA_NOMBRE = vDEPENDENCIA_NOMBRE;
+
+	public void setDependenciaNombre(String dependenciaNombre) {
+		DependenciaNombre = dependenciaNombre;
 	}
-	public Integer getVDEPENDENCIA_ABREVIADO() {
-		return VDEPENDENCIA_ABREVIADO;
+
+	public Integer getDependenciaAbreviado() {
+		return DependenciaAbreviado;
 	}
-	public void setVDEPENDENCIA_ABREVIADO(Integer vDEPENDENCIA_ABREVIADO) {
-		VDEPENDENCIA_ABREVIADO = vDEPENDENCIA_ABREVIADO;
+
+	public void setDependenciaAbreviado(Integer dependenciaAbreviado) {
+		DependenciaAbreviado = dependenciaAbreviado;
 	}
-	public String getCDEPENDENCIA_PREFIJO() {
-		return CDEPENDENCIA_PREFIJO;
+
+	public String getDependenciaPrefijo() {
+		return DependenciaPrefijo;
 	}
-	public void setCDEPENDENCIA_PREFIJO(String cDEPENDENCIA_PREFIJO) {
-		CDEPENDENCIA_PREFIJO = cDEPENDENCIA_PREFIJO;
+
+	public void setDependenciaPrefijo(String dependenciaPrefijo) {
+		DependenciaPrefijo = dependenciaPrefijo;
 	}
-	
-	
-	
+
 	
 
 }
