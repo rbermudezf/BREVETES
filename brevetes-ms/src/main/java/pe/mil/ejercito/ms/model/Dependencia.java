@@ -8,26 +8,26 @@ import javax.persistence.Table;
 
 @Entity//LLAMA A LA ENTIDAD
 @Table(name="EP_DEPENDENCIA")//LLAMA A LA ATBLA
-
-
-public class EP_DEPENDENCIA {
+public class Dependencia {
 	
 	@Id //TOMA A LA LLAVE PRIMARIA
 	@GeneratedValue(generator="sq_dependencia")//GENERAR TU CODIGO YA SEA POR UNA SECUENCIA O EL JAVA
 	@SequenceGenerator(name="sq_dependencia",sequenceName="\"SQ_DEPENDENCIA\"", allocationSize=1) 
-	
-	private String CDEPENDENCIA_CODIGO;
+	@Column( name="CDEPENDENCIA_CODIGO")
+	private String dependenciaCodigo;
+
 	private String VDEPENDENCIA_NOMBRE;
 	private Integer VDEPENDENCIA_ABREVIADO;
 	private String CDEPENDENCIA_PREFIJO;
 	
-	
-	public String getCDEPENDENCIA_CODIGO() {
-		return CDEPENDENCIA_CODIGO;
+	public String getDependenciaCodigo(){
+		return dependenciaCodigo;
 	}
-	public void setCDEPENDENCIA_CODIGO(String cDEPENDENCIA_CODIGO) {
-		CDEPENDENCIA_CODIGO = cDEPENDENCIA_CODIGO;
+
+	public String setDependenciaCodigo(String dependenciaCodigo){
+		this.dependenciaCodigo = dependenciaCodigo;
 	}
+
 	public String getVDEPENDENCIA_NOMBRE() {
 		return VDEPENDENCIA_NOMBRE;
 	}
