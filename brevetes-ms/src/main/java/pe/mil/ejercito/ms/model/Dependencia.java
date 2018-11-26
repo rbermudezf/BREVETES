@@ -1,5 +1,6 @@
 package pe.mil.ejercito.ms.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -24,7 +25,7 @@ public class Dependencia {
 		return dependenciaCodigo;
 	}
 
-	public String setDependenciaCodigo(String dependenciaCodigo){
+	public void setDependenciaCodigo(String dependenciaCodigo){
 		this.dependenciaCodigo = dependenciaCodigo;
 	}
 
