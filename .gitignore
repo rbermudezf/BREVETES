@@ -50,3 +50,5 @@ commons/\.classpath
 commons/\.project
 
 RemoteSystemsTempFiles/
+
+ModelHelp/
