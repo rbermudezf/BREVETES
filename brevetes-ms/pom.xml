@@ -6,7 +6,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>pe.mil.ejercito.ms</groupId>
-	<artifactId>ms-ep</artifactId>
+	<artifactId>brevetes-ms</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>war</packaging>
 
@@ -260,6 +260,6 @@
 				</configuration>
 			</plugin>
 		</plugins>
-		<finalName>ms-ep</finalName>
+		<finalName>brevetes-ms</finalName>
 	</build>
 </project>
