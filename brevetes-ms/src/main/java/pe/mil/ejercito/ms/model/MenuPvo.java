@@ -1,5 +1,6 @@
 package pe.mil.ejercito.ms.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -10,25 +11,27 @@ import javax.persistence.Table;
 @Table(name="EP_ROL_PVU")
 
 
-public class EP_MENU_PVU {
+public class MenuPvo {
 	@Id
 	@GeneratedValue(generator="sq_menu")
 	@SequenceGenerator(name="sq_menu",sequenceName="SQ_MENU", allocationSize=1)
 	
-	private String VMENU_CODIGO;
-	private String VMENU_NOMBRE;
 	
-	public String getVMENU_CODIGO() {
-		return VMENU_CODIGO;
+	@Column( name="VMENU_CODIGO")
+	private String menuCodigo;
+	@Column( name="VMENU_NOMBRE")
+	private String menuNombre;
+	public String getMenuCodigo() {
+		return menuCodigo;
 	}
-	public void setVMENU_CODIGO(String vMENU_CODIGO) {
-		VMENU_CODIGO = vMENU_CODIGO;
+	public void setMenuCodigo(String menuCodigo) {
+		this.menuCodigo = menuCodigo;
 	}
-	public String getVMENU_NOMBRE() {
-		return VMENU_NOMBRE;
+	public String getMenuNombre() {
+		return menuNombre;
 	}
-	public void setVMENU_NOMBRE(String vMENU_NOMBRE) {
-		VMENU_NOMBRE = vMENU_NOMBRE;
+	public void setMenuNombre(String menuNombre) {
+		this.menuNombre = menuNombre;
 	}
 	
 	
