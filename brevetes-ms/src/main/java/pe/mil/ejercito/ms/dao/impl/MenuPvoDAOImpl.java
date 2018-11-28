@@ -8,18 +8,16 @@ import org.springframework.transaction.annotation.Transactional;
 
 import pe.mil.ejercito.ms.dao.MenuPvoDAO;
 import pe.mil.ejercito.ms.model.MenuPvo;
+import pe.mil.ejercito.ms.model.Usuario;
 
 
 @Repository
 @Transactional
 
-public class MenuPvoDAOImpl  implements MenuPvoDAO{
-
-	@Override
-	public List<MenuPvo> ListaMenu() {
-		List<MenuPvo> ListaMenuPvo=new ArrayList<>();
-		
-		return null;
-	}
+public class MenuPvoDAOImpl extends BaseDAOImpl<MenuPvo>  implements MenuPvoDAO{
+	
+	public MenuPvoDAOImpl() {
+		super(MenuPvo.class);
+	}	
 
 }

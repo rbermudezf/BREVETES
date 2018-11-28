@@ -23,11 +23,19 @@ public class BaseDAOImpl<T> implements BaseDAO<T>{
 		this.clazz = clazz;
 	}
 	
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<T> listarTodos() {
+	public void rodas(String nombre) {
 		
+	}
+	
+	@SuppressWarnings("unchecked")
+	
+	@Override	
+	public List<T> listarTodos() {		
 		// Listando todos los registros de una tabla
+		
+		System.out.println("Con el getName"+clazz.getName());
+		System.out.println("Con el getSimpleName"+clazz.getSimpleName());
+		
 		String consulta = " select o from " + clazz.getSimpleName() + " o";
 		Query q = em.getCurrentSession().createQuery(consulta);
 		return q.list();

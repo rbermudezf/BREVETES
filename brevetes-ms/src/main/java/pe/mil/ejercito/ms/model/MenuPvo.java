@@ -12,15 +12,17 @@ import javax.persistence.Table;
 
 
 public class MenuPvo {
+	
+	//@GeneratedValue(generator="sq_menu")
+	//@SequenceGenerator(name="sq_menu",sequenceName="SQ_MENU", allocationSize=1)
+	
 	@Id
-	@GeneratedValue(generator="sq_menu")
-	@SequenceGenerator(name="sq_menu",sequenceName="SQ_MENU", allocationSize=1)
-	
-	
 	@Column( name="VMENU_CODIGO")
 	private String menuCodigo;
+	
 	@Column( name="VMENU_NOMBRE")
 	private String menuNombre;
+	
 	public String getMenuCodigo() {
 		return menuCodigo;
 	}
