@@ -139,6 +139,18 @@ public class UsuarioController {
 		return usuarioPortalService.listarTodos();
 
 	}
+	
+	@ApiOperation(value = "Lista todos los menus del Portal - Rodas", response = List.class)
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Información obtenida con éxito"),
+			@ApiResponse(code = 400, message = SwaggerApiMessages.MESSAGE_400),
+			@ApiResponse(code = 401, message = SwaggerApiMessages.MESSAGE_401),
+			@ApiResponse(code = 404, message = SwaggerApiMessages.MESSAGE_404) })
+	@RequestMapping(value = "/listMenuPortal/", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public List<MenuPvo> listMenuPortal(HttpServletResponse response, HttpServletRequest request) {
+
+		return menuPvoSevice.listarMenu();
+
+	}
 
 	}
 
