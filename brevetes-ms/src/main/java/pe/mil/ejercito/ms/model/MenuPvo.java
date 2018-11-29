@@ -8,9 +8,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="EP_ROL_PVU")
-
-
+@Table(name="EP_MENU_PVU")
 public class MenuPvo {
 	
 	//@GeneratedValue(generator="sq_menu")

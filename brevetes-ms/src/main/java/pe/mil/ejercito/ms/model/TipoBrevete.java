@@ -12,13 +12,12 @@ import javax.persistence.Table;
 public class TipoBrevete {
 	
 	@Id
-	@GeneratedValue(generator="SQ_TIPO_BREVETE")
-	@SequenceGenerator(name="SQ_TIPO_BREVETE",sequenceName="SQ_TIPO_BREVETE", allocationSize=5)
-	
-	@Column(name="CTIPOBREVETE_CODIGO")
+//	@GeneratedValue(generator="SQ_TIPO_BREVETE")
+//	@SequenceGenerator(name="SQ_TIPO_BREVETE",sequenceName="SQ_TIPO_BREVETE", allocationSize=5)
+	@Column(name="NTIPOBREVETE_CODIGO")
 	private String codigoTipoBrevete;
 	
-	@Column(name="CTIPOBREVETE_NOMBRE")
+	@Column(name="VTIPOBREVETE_NOMBRE")
 	private String nombreTipoBrevete;
 
 	public String getCodigoTipoBrevete() {

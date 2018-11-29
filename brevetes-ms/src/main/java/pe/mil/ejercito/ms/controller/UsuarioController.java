@@ -44,9 +44,9 @@ public class UsuarioController {
 	private UsuarioPortalService usuarioPortalService;
 	
 	@Autowired
-
 	private MenuPvoService menuPvoSevice;
 
+	@Autowired
 	private TipoBreveteService tipoBreveteService;
 
 

@@ -52,3 +52,5 @@ commons/\.project
 RemoteSystemsTempFiles/
 
 ModelHelp/
+
+\.DS_Store
