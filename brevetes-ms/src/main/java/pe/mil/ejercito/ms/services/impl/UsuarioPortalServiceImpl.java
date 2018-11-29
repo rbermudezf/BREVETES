@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import pe.mil.ejercito.ms.dao.UsuarioDAO;
+
 import pe.mil.ejercito.ms.dao.UsuarioPortalDAO;
 import pe.mil.ejercito.ms.model.Usuario;
 import pe.mil.ejercito.ms.services.UsuarioPortalService;

@@ -17,9 +17,15 @@ import pe.mil.ejercito.ms.commons.SwaggerApiMessages;
 import pe.mil.ejercito.ms.dto.UsuarioListRestOUT;
 import pe.mil.ejercito.ms.dto.UsuarioRestIN;
 import pe.mil.ejercito.ms.dto.UsuarioRestOUT;
+<<<<<<< Updated upstream
 import pe.mil.ejercito.ms.model.MenuPvo;
 import pe.mil.ejercito.ms.model.Usuario;
 import pe.mil.ejercito.ms.services.MenuPvoService;
+=======
+import pe.mil.ejercito.ms.model.TipoBrevete;
+import pe.mil.ejercito.ms.model.Usuario;
+import pe.mil.ejercito.ms.services.TipoBreveteService;
+>>>>>>> Stashed changes
 import pe.mil.ejercito.ms.services.UsuarioPortalService;
 import pe.mil.ejercito.ms.services.UsuarioService;
 import io.swagger.annotations.ApiResponses;
@@ -38,7 +44,11 @@ public class UsuarioController {
 	private UsuarioPortalService usuarioPortalService;
 	
 	@Autowired
+<<<<<<< Updated upstream
 	private MenuPvoService menuPvoSevice;
+=======
+	private TipoBreveteService tipoBreveteService;
+>>>>>>> Stashed changes
 
 	@ApiOperation(value = "Retorna solo un usuario de una lista completa", response = Usuario.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Información obtenida con éxito"),
@@ -131,15 +141,26 @@ public class UsuarioController {
 
 	}
 	
+<<<<<<< Updated upstream
 	@ApiOperation(value = "Lista todos los menus del Portal - Rodas", response = List.class)
+=======
+	@ApiOperation(value = "Lista todos los tipos de brevete - Oliver", response = List.class)
+>>>>>>> Stashed changes
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Información obtenida con éxito"),
 			@ApiResponse(code = 400, message = SwaggerApiMessages.MESSAGE_400),
 			@ApiResponse(code = 401, message = SwaggerApiMessages.MESSAGE_401),
 			@ApiResponse(code = 404, message = SwaggerApiMessages.MESSAGE_404) })
+<<<<<<< Updated upstream
 	@RequestMapping(value = "/listMenuPortal/", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public List<MenuPvo> listMenuPortal(HttpServletResponse response, HttpServletRequest request) {
 
 		return menuPvoSevice.listarMenu();
+=======
+	@RequestMapping(value = "/listTipoBrevete/", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public List<TipoBrevete> listTipoBrevete(HttpServletResponse response, HttpServletRequest request) {
+
+		return tipoBreveteService.listarTipoBrevete();
+>>>>>>> Stashed changes
 
 	}
 
