@@ -9,9 +9,7 @@ import pe.mil.ejercito.ms.model.Usuario;
 public class UsuarioPortalDAOImpl extends BaseDAOImpl<Usuario>  implements UsuarioPortalDAO{
 
 	public UsuarioPortalDAOImpl() {
-		super(Usuario.class);
+		super( Usuario.class );
 	}
-	
-		
 
 }
