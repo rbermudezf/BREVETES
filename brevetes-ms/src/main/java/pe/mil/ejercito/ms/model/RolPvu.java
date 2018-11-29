@@ -9,17 +9,20 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="EP_ROL_PVU")
-public class Rol {
+public class RolPvu {
 	
 	@Id
 	@GeneratedValue(generator="SQ_ROL")
 	@SequenceGenerator(name="SQ_ROL",sequenceName="SQ_ROL", allocationSize=1)
 	@Column(name="NROL_CODIGO")
 	private String codigoRol;
+	
 	@Column(name="VROL_NOMBRE")
 	private String nombreRol;
 	@Column(name="VROL_PRIVILEGIO")
 	private String privilegioRol;
+	
+	//GETTERS AND SETTERS
 	public String getCodigoRol() {
 		return codigoRol;
 	}
