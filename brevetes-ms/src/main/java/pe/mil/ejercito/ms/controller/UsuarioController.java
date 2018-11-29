@@ -17,7 +17,9 @@ import pe.mil.ejercito.ms.commons.SwaggerApiMessages;
 import pe.mil.ejercito.ms.dto.UsuarioListRestOUT;
 import pe.mil.ejercito.ms.dto.UsuarioRestIN;
 import pe.mil.ejercito.ms.dto.UsuarioRestOUT;
+import pe.mil.ejercito.ms.model.MenuPvo;
 import pe.mil.ejercito.ms.model.Usuario;
+import pe.mil.ejercito.ms.services.MenuPvoService;
 import pe.mil.ejercito.ms.services.UsuarioPortalService;
 import pe.mil.ejercito.ms.services.UsuarioService;
 import io.swagger.annotations.ApiResponses;
@@ -34,6 +36,9 @@ public class UsuarioController {
 
 	@Autowired
 	private UsuarioPortalService usuarioPortalService;
+	
+	@Autowired
+	private MenuPvoService menuPvoSevice;
 
 	@ApiOperation(value = "Retorna solo un usuario de una lista completa", response = Usuario.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Información obtenida con éxito"),
@@ -123,6 +128,18 @@ public class UsuarioController {
 	public List<Usuario> listUsuarioPortal(HttpServletResponse response, HttpServletRequest request) {
 
 		return usuarioPortalService.listarTodos();
+
+	}
+	
+	@ApiOperation(value = "Lista todos los menus del Portal - Rodas", response = List.class)
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Información obtenida con éxito"),
+			@ApiResponse(code = 400, message = SwaggerApiMessages.MESSAGE_400),
+			@ApiResponse(code = 401, message = SwaggerApiMessages.MESSAGE_401),
+			@ApiResponse(code = 404, message = SwaggerApiMessages.MESSAGE_404) })
+	@RequestMapping(value = "/listMenuPortal/", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public List<MenuPvo> listMenuPortal(HttpServletResponse response, HttpServletRequest request) {
+
+		return menuPvoSevice.listarMenu();
 
 	}
 

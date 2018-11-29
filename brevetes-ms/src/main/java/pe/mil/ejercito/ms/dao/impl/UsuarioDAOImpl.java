@@ -38,6 +38,7 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 	}
 	
 	public List<Usuario> list(){
+		
 		List<Usuario> usuarioLst = new ArrayList<>();
 		
 		Query q = em.getCurrentSession().createQuery("select u from Usuario u");

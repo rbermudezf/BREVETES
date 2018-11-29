@@ -1,17 +1,17 @@
 package pe.mil.ejercito.ms.dao.impl;
-
-import javax.transaction.Transactional;
-
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import pe.mil.ejercito.ms.dao.UsuarioPortalDAO;
 import pe.mil.ejercito.ms.model.Usuario;
-
 @Repository
-public class UsuarioPortalDAOImpl extends BaseDAOImpl<Usuario> implements UsuarioPortalDAO{
+@Transactional
+public class UsuarioPortalDAOImpl extends BaseDAOImpl<Usuario>  implements UsuarioPortalDAO{
 
-	public UsuarioPortalDAOImpl(){
+	public UsuarioPortalDAOImpl() {
 		super(Usuario.class);
 	}
 	
+		
+
 }
