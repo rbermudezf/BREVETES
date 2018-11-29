@@ -46,8 +46,7 @@ public class UsuarioController {
 	@Autowired
 	private MenuPvoService menuPvoSevice;
 
-	@Autowired
-	private TipoBreveteService tipoBreveteService;
+	
 
 
 	@ApiOperation(value = "Retorna solo un usuario de una lista completa", response = Usuario.class)
@@ -140,20 +139,6 @@ public class UsuarioController {
 		return usuarioPortalService.listarTodos();
 
 	}
-	
-	@ApiOperation(value = "Lista todos los Tipo de Brevete - OLIVER", response = List.class)
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "Información obtenida con éxito"),
-			@ApiResponse(code = 400, message = SwaggerApiMessages.MESSAGE_400),
-			@ApiResponse(code = 401, message = SwaggerApiMessages.MESSAGE_401),
-			@ApiResponse(code = 404, message = SwaggerApiMessages.MESSAGE_404) })
-	@RequestMapping(value = "/listTipoBrevete/", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public List<TipoBrevete> listTipoBrevete(HttpServletResponse response, HttpServletRequest request) {
-
-		return tipoBreveteService.listarTipoBrevete();
-
-	}
-	
-
 
 	}
 
