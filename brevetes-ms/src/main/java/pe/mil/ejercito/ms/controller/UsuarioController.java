@@ -13,21 +13,22 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+
 import pe.mil.ejercito.ms.commons.SwaggerApiMessages;
 import pe.mil.ejercito.ms.dto.UsuarioListRestOUT;
 import pe.mil.ejercito.ms.dto.UsuarioRestIN;
 import pe.mil.ejercito.ms.dto.UsuarioRestOUT;
 
 import pe.mil.ejercito.ms.model.MenuPvo;
-import pe.mil.ejercito.ms.model.Usuario;
-import pe.mil.ejercito.ms.services.MenuPvoService;
-
+import pe.mil.ejercito.ms.model.RolPvu;
 import pe.mil.ejercito.ms.model.TipoBrevete;
 import pe.mil.ejercito.ms.model.Usuario;
-import pe.mil.ejercito.ms.services.TipoBreveteService;
 
+import pe.mil.ejercito.ms.services.MenuPvoService;
+import pe.mil.ejercito.ms.services.RolPvuService;
 import pe.mil.ejercito.ms.services.UsuarioPortalService;
 import pe.mil.ejercito.ms.services.UsuarioService;
+
 import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.ApiResponse;
 
@@ -42,12 +43,12 @@ public class UsuarioController {
 
 	@Autowired
 	private UsuarioPortalService usuarioPortalService;
-	
+
 	@Autowired
 	private MenuPvoService menuPvoSevice;
 
-	
-
+	@Autowired
+	private RolPvuService rolPvuSevice;
 
 	@ApiOperation(value = "Retorna solo un usuario de una lista completa", response = Usuario.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Información obtenida con éxito"),
@@ -91,7 +92,7 @@ public class UsuarioController {
 		return u;
 	}
 
-	@ApiOperation(value = "Retorna un usuariopor su nickname", response = Usuario.class)
+	@ApiOperation(value = "Retorna un usuario por su nickname", response = Usuario.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Información obtenida con éxito"),
 			@ApiResponse(code = 400, message = SwaggerApiMessages.MESSAGE_400),
 			@ApiResponse(code = 401, message = SwaggerApiMessages.MESSAGE_401),
@@ -128,30 +129,35 @@ public class UsuarioController {
 		return usuarioService.guardarUsuario(usuarioRestIn);
 	}
 
-	@ApiOperation(value = "Lista todos los usuario sdel portal", response = List.class)
+	@ApiOperation(value = "Lista todos los usuario del portal", response = List.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Información obtenida con éxito"),
 			@ApiResponse(code = 400, message = SwaggerApiMessages.MESSAGE_400),
 			@ApiResponse(code = 401, message = SwaggerApiMessages.MESSAGE_401),
 			@ApiResponse(code = 404, message = SwaggerApiMessages.MESSAGE_404) })
 	@RequestMapping(value = "/listUsuarioPortal/", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public List<Usuario> listUsuarioPortal(HttpServletResponse response, HttpServletRequest request) {
-
 		return usuarioPortalService.listarTodos();
-
 	}
 	
-	@ApiOperation(value = "Lista todos los menus del Portal - Rodas", response = List.class)
+	@ApiOperation(value = "Lista todos los Menu", response = List.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Información obtenida con éxito"),
 			@ApiResponse(code = 400, message = SwaggerApiMessages.MESSAGE_400),
 			@ApiResponse(code = 401, message = SwaggerApiMessages.MESSAGE_401),
 			@ApiResponse(code = 404, message = SwaggerApiMessages.MESSAGE_404) })
-	@RequestMapping(value = "/listMenuPortal/", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public List<MenuPvo> listMenuPortal(HttpServletResponse response, HttpServletRequest request) {
-
+	@RequestMapping(value = "/listMenu/", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public List<MenuPvo> listMenu(HttpServletResponse response, HttpServletRequest request) {
 		return menuPvoSevice.listarMenu();
-
 	}
-
+	
+	@ApiOperation(value = "Lista todos los Roles", response = List.class)
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Información obtenida con éxito"),
+			@ApiResponse(code = 400, message = SwaggerApiMessages.MESSAGE_400),
+			@ApiResponse(code = 401, message = SwaggerApiMessages.MESSAGE_401),
+			@ApiResponse(code = 404, message = SwaggerApiMessages.MESSAGE_404) })
+	@RequestMapping(value = "/listRol/", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public List<RolPvu> listRol(HttpServletResponse response, HttpServletRequest request) {
+		return rolPvuSevice.listarRol();
 	}
-
-
+	
+}
+	

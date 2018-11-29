@@ -2,19 +2,20 @@ package pe.mil.ejercito.ms.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
+//import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
+//import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-@Entity//LLAMA A LA ENTIDAD
+@Entity//LLAMA A LA ENTIDAD, referencia a aun objeto
 @Table(name="EP_DEPENDENCIA")//LLAMA A LA ATBLA
 public class Dependencia {
 	
-	@Id //TOMA A LA LLAVE PRIMARIA
-	@GeneratedValue(generator="sq_dependencia")//GENERAR TU CODIGO YA SEA POR UNA SECUENCIA O EL JAVA
-	@SequenceGenerator(name="sq_dependencia",sequenceName="\"SQ_DEPENDENCIA\"", allocationSize=1) 
+	 //TOMA A LA LLAVE PRIMARIA
+	//@GeneratedValue(generator="sq_dependencia")//GENERAR TU CODIGO YA SEA POR UNA SECUENCIA O EL JAVA
+	//@SequenceGenerator(name="sq_dependencia",sequenceName="\"SQ_DEPENDENCIA\"", allocationSize=1) 
 	
+	@Id
 	@Column( name="CDEPENDENCIA_CODIGO")
 	private String codigoDependencia;
 
