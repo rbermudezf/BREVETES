@@ -14,7 +14,7 @@ import org.springframework.web.servlet.DispatcherServlet;
 public class AppInitializer {
 	
 	public void onStartup(ServletContext servletContext) throws ServletException {
-
+		
 		/**
 		 * Registrando el Context Loader Listener
 		 */
@@ -34,6 +34,7 @@ public class AppInitializer {
 		characterEncodingFilter.setInitParameter("encoding", "UTF-8");
 		characterEncodingFilter.setInitParameter("forceEncoding", "true");
 		characterEncodingFilter.addMappingForUrlPatterns(null, false, "/*");
+		
 	}
 
 	private AnnotationConfigWebApplicationContext getContext() {
@@ -41,4 +42,6 @@ public class AppInitializer {
 		context.setConfigLocation("pe.mil.ejercito.ms.configuration");
 		return context;
 	}
+	
+	
 }

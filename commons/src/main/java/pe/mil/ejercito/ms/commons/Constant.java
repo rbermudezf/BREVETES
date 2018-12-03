@@ -10,4 +10,7 @@ public class Constant {
 	public static Integer NO_ERROR = 0;
 	public static Integer HAS_ERROR = 1;
 	
+	public static final String HEADER_AUTHORIZACION_KEY = "Authorization";
+	public static final String TOKEN_BEARER_PREFIX = "Bearer ";
+	
 }
