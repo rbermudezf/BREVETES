@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.jndi.JndiTemplate;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
@@ -20,11 +21,16 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 import pe.mil.ejercito.ms.exception.MsException;
 
+import static pe.mil.ejercito.ms.commons.Constant.*;
+
 @Configuration
 @EnableTransactionManagement
 @ComponentScan(basePackages = { "pe.mil.ejercito.ms.*" })
 public class AppDaoConfig {
 
+	@Autowired
+	private Environment env;
+	
 	@Bean
 	public LocalSessionFactoryBean sessionFactory() throws MsException {
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
@@ -80,7 +86,7 @@ public class AppDaoConfig {
 		DataSource dataSource = null;
 		JndiTemplate jndi = new JndiTemplate();
 		try {
-			dataSource = jndi.lookup("java:/msDS", DataSource.class);
+			dataSource = jndi.lookup( env.getProperty( PROP_JDBC_DATASOURCE ) , DataSource.class);
 			return dataSource;
 		} catch (Exception e) {
 			throw new MsException(1, e);
@@ -89,10 +95,9 @@ public class AppDaoConfig {
 
 	Properties additionalProperties() {
 		Properties properties = new Properties();
-		properties.setProperty("hibernate.connection.datasource", "java:/msDS");
-		properties.setProperty("hibernate.connection.autocommit ", "true");
-		properties.setProperty("hibernate.dialect", "org.hibernate.dialect.Oracle10gDialect");
-		properties.setProperty("show_sql", "true");
+		properties.setProperty("hibernate.connection.datasource", env.getProperty( PROP_JDBC_DATASOURCE ));
+		properties.setProperty("hibernate.dialect", env.getProperty( PROP_JDBC_HIBERNATE_DIALECT ) );
+		properties.setProperty("show_sql", env.getProperty( PROP_JDBC_HIBERNATE_SHOWSQL ) );
 		return properties;
 	}
 }

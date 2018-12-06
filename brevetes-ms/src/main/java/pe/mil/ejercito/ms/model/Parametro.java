@@ -13,6 +13,9 @@ public class Parametro {
 	private String grupo;
 
 	@Id
+	@Column( name="NPAR_ID" )
+	private Long id;
+	
 	@Column(name = "VPAR_NOMBRE")
 	private String nombre;
 

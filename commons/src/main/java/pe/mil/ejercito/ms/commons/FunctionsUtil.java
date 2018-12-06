@@ -1,5 +1,9 @@
 package pe.mil.ejercito.ms.commons;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -242,6 +246,34 @@ public class FunctionsUtil {
             }
         }
         return false;
+    }
+    
+    public static String[] toArray(String text, String regex) {
+    	
+    	if( isEmpty(text) ) {
+    		return null;
+    	}
+    	
+    	return text.split(regex);
+    }
+    
+    public static String toStringValue( InputStream is ) throws IOException {
+		
+    	if( isEmpty(is) ) {
+    		return null;
+    	}
+    	
+    	BufferedReader br = new BufferedReader(new InputStreamReader( is ));
+		StringBuffer sb = new StringBuffer();
+		String inputLine;
+
+		while ((inputLine = br.readLine()) != null) {
+			sb.append(inputLine);
+		}
+		br.close();
+		
+		return sb.toString();
+		
     }
 	
 }

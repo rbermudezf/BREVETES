@@ -1,15 +1,11 @@
 package pe.mil.ejercito.ms.configuration;
 
-import static pe.mil.ejercito.ms.commons.Constant.HEADER_AUTHORIZACION_KEY;
-import static pe.mil.ejercito.ms.commons.Constant.TOKEN_BEARER_PREFIX;
+import static pe.mil.ejercito.ms.commons.Constant.*;
+import static pe.mil.ejercito.ms.commons.FunctionsUtil.*;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Enumeration;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -20,71 +16,68 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.web.filter.GenericFilterBean;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 
 public class RestRequest implements Filter {
 	
+	final Logger logger = LogManager.getLogger(RestRequest.class);
+	
+	@Autowired
+	private Environment env;
 	
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-
-		System.out.println("Llamando a los servicios");
 		
-		String token = ((HttpServletRequest)request).getHeader(HEADER_AUTHORIZACION_KEY);
-		String urlWeb = ((HttpServletRequest)request).getRequestURL().toString();
-		System.out.println("Llamando a los servicios + " + token + " - " + urlWeb);
+		HttpServletRequest req = ((HttpServletRequest)request);
+		HttpServletResponse res = ((HttpServletResponse)response);
 		
-		if( urlWeb.contains("swagger-ui.html") || urlWeb.contains("webjars") || 
-				urlWeb.contains("swagger-resources") || urlWeb.contains("v2") || 
-				urlWeb.contains("configuration") ) {
+		String token = req.getHeader(HEADER_AUTHORIZACION_KEY);
+		String urlWeb = req.getRequestURL().toString();
+		
+		if( inList( urlWeb, toArray( env.getProperty(PROP_REST_RESOURCE_EXCLUDE), ",") ) ) {
 			chain.doFilter(request, response);
 			return;
 		}
 		
-		if (token != null ) {
+		if ( isEmpty( token ) ) {
 
 			try {
-				// curl -X GET "https://www.googleapis.com/oauth2/v1/userinfo" -H"Authorization: Bearer ya29.GltnBvJv9jHoskBMPLUVcNylH5AOWtlUkNuxBzUyAHPLtdHEyq9uZDAUsgqCuNHmFOftA0ZK9ZuPlDbki9kzrdBV92uzzErIyVyxbZjyUP0iyODtnzqKxFuoczCV
+				// curl -X GET "https://www.googleapis.com/oauth2/v1/userinfo" -H"Authorization: Bearer ya29.GlxnBpM_DQ-Ej24WXJMEXuMX0Cb2C1YAyicASJQmw9NnZlqK0KIhl1hdFOCnkPtM8z6zUjTZmq90GcVeUd6SHesKOeQ_i4B22NcyxhWYBkmXmxnyWfXfgSh00KbdJQ"
 				// https://any-api.com/googleapis_com/oauth2/console/userinfo/oauth2_userinfo_get
 				
-				URL url = new URL("https://www.googleapis.com/oauth2/v1/userinfo");
+				URL url = new URL( env.getProperty( PROP_REST_ENDPOINT ) );
 
 				HttpURLConnection con = (HttpURLConnection) url.openConnection();
-				con.setRequestProperty("authorization", token);
+				con.setRequestProperty( REST_HEADER_AUTHORIZATION , token);
 				con.connect();
 				
-				if (con.getResponseCode() != 200) {
-			        throw new RuntimeException("Servicio de autenticación no está disponible: " + con.getResponseCode());
+				if ( con.getResponseCode()==REST_RESPONSE_UNAUTHORIZATION ) {
+					res.sendError(HttpServletResponse.SC_UNAUTHORIZED, env.getProperty( PROP_MSG_HTTP_ERR_NOAUT ));
+					return;
 			    }
 				
-				BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream()));
-				StringBuffer sb = new StringBuffer();
-				String inputLine;
-
-				while ((inputLine = br.readLine()) != null) {
-					sb.append(inputLine);
-				}
-
-				System.out.println("Obtenido del servidor: " + sb.toString());
-				
-				br.close();
+				if ( con.getResponseCode()!=REST_RESPONSE_OK ) {
+					res.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, env.getProperty( PROP_MSG_HTTP_ERR_SERV ));
+					return;
+			    }
+								
 				con.disconnect();
 				chain.doFilter(request, response);
 				return;
-			} catch (MalformedURLException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
+				
+			} catch ( IOException e ) {
+				logger.error( e.getMessage() );
 			}
 
-			((HttpServletResponse)response).sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
-					"Credenciales no son las correctas.");
+			res.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, PROP_MSG_HTTP_ERR_SERV);
 			return;
 		}
 
-		((HttpServletResponse)response).sendError(HttpServletResponse.SC_UNAUTHORIZED,
-				"No tiene permisos para acceder al recurso.");
+		res.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, env.getProperty( PROP_MSG_HTTP_ERR_NOAUT ));
 
 	}
 
