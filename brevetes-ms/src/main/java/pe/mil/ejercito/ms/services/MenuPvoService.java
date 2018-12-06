@@ -1,11 +1,10 @@
 package pe.mil.ejercito.ms.services;
 
-import java.util.List;
 
-import pe.mil.ejercito.ms.model.MenuPvo;
+import pe.mil.ejercito.ms.dto.MenuPvuListRestOUT;
 
 public interface MenuPvoService {
 
-	public List<MenuPvo> listarMenu();
+	public MenuPvuListRestOUT listarMenu();
 
 }

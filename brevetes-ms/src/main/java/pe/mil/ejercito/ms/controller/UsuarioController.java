@@ -15,6 +15,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 import pe.mil.ejercito.ms.commons.SwaggerApiMessages;
+import pe.mil.ejercito.ms.dto.MenuPvuListRestOUT;
+import pe.mil.ejercito.ms.dto.MenuPvuRestOUT;
 import pe.mil.ejercito.ms.dto.UsuarioListRestOUT;
 import pe.mil.ejercito.ms.dto.UsuarioRestIN;
 import pe.mil.ejercito.ms.dto.UsuarioRestOUT;
@@ -139,13 +141,13 @@ public class UsuarioController {
 		return usuarioPortalService.listarTodos();
 	}
 	
-	@ApiOperation(value = "Lista todos los Menu", response = List.class)
+	@ApiOperation(value = "Lista todos los Menu", response = MenuPvuListRestOUT.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Información obtenida con éxito"),
 			@ApiResponse(code = 400, message = SwaggerApiMessages.MESSAGE_400),
 			@ApiResponse(code = 401, message = SwaggerApiMessages.MESSAGE_401),
 			@ApiResponse(code = 404, message = SwaggerApiMessages.MESSAGE_404) })
 	@RequestMapping(value = "/listMenu/", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public List<MenuPvo> listMenu(HttpServletResponse response, HttpServletRequest request) {
+	public MenuPvuListRestOUT listMenu(HttpServletResponse response, HttpServletRequest request) {
 		return menuPvoSevice.listarMenu();
 	}
 	
